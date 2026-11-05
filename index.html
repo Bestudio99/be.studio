@@ -22,7 +22,11 @@ body{background:var(--black);color:var(--cream);font:500 18px/1.45 var(--voice)}
 a{color:inherit}
 a:hover{color:var(--light)}
 header .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:22px}
-header nav{display:flex;gap:20px}
+header nav{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.lang{display:flex}
+.lang button{min-width:44px;min-height:44px;padding:0 8px;border:1.5px solid var(--cream);background:transparent;color:var(--cream);font:700 14px var(--mono);cursor:pointer}
+.lang button+button{border-left:0}
+.lang button[aria-pressed="true"]{background:var(--cream);color:var(--black)}
 .logo{font-weight:700;text-decoration:none}
 h1,h2,h3{margin:0;text-wrap:balance}
 .hero .in{padding-block:clamp(36px,7vw,84px) 44px}
@@ -89,7 +93,7 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24
 </head>
 <body>
 
-<header class="pad"><div class="in mono"><a class="logo" href="#inicio">BE.STUDIO</a><nav><a href="#servicios">(1) Servicios</a><a href="#brief">(2) Brief</a></nav></div></header>
+<header class="pad"><div class="in mono"><a class="logo" href="#inicio">BE.STUDIO</a><nav><a href="#servicios">(1) Servicios</a><a href="#brief">(2) Brief</a><span class="lang" role="group" aria-label="Idioma / Language"><button type="button" id="lang-es">ES</button><button type="button" id="lang-en">EN</button></span></nav></div></header>
 
 <main id="inicio">
 <section class="hero pad"><div class="in">
@@ -180,6 +184,24 @@ const WHATSAPP = "34627929605";
 const KEY = "bestudio-brief";
 const form = document.getElementById("f");
 const $ = id => document.getElementById(id);
+let lang = "es";
+const T = {
+"(1) Servicios":"(1) Services","(productora audiovisual) · Barcelona":"(video production studio) · Barcelona","Empezar un proyecto":"Start a project","(próximamente)":"(coming soon)",
+"(1) DEPORTE":"(1) SPORT","(2) MODA":"(2) FASHION","(3) VIAJES":"(3) TRAVEL","(4) MARCAS":"(4) BRANDS",
+"Entrenamientos, atletas y competición.":"Training, athletes and competition.","Piezas con estética y dirección de imagen.":"Pieces with style and art direction.","Experiencias y día a día contados como historia.":"Experiences and everyday moments told as a story.","Contenido para redes, marcas y creadores.":"Content for social media, brands and creators.",
+"CUÉNTAME":"TELL ME","TU PROYECTO":"YOUR PROJECT","Son unos 5 minutos. Responde lo que sepas; lo que falte lo vemos juntos. Al final verás tu ticket y me lo enviarás con un botón.":"It takes about 5 minutes. Answer what you can; we'll go over the rest together. At the end you'll see your ticket and send it to me with one button.",
+"¿Con quién hablo?":"Who am I talking to?","Tu nombre *":"Your name *","Marca o proyecto":"Brand or project","WhatsApp o correo *":"WhatsApp or email *","Web o redes":"Website or social media","¿Quién aprueba el contenido?":"Who approves the content?",
+"¿Qué quieres contar?":"What do you want to say?","Tipo de proyecto":"Project type","Objetivo principal":"Main goal","Describe el proyecto *":"Describe the project *","¿Qué debe sentir quien lo vea?":"What should viewers feel?","¿A quién va dirigido?":"Who is it for?",
+"¿Qué necesitas recibir?":"What do you need to receive?","Piezas":"Deliverables","Plataformas":"Platforms","¿Cuántas piezas y de qué duración?":"How many pieces and how long?","¿Para cuándo lo necesitas?":"When do you need it?","Referencias que te gusten":"References you like","· enlaces a vídeos o cuentas":"· links to videos or accounts","¿Algo que quieras evitar?":"Anything you want to avoid?",
+"¿Dónde y cuándo?":"Where and when?","Fechas y horarios":"Dates and times","Lugar o lugares":"Location or locations","¿Quién aparecerá?":"Who will appear?","Plan o actividades previstas":"Plan or planned activities","Productos o marcas que deben aparecer":"Products or brands that must appear","¿Hace falta permiso para grabar en algún sitio?":"Is permission needed to film anywhere?",
+"¿Cómo trabajamos juntos?":"How do we work together?","Tipo de acuerdo":"Type of agreement","Presupuesto o intercambio previsto":"Budget or planned exchange","Si el rodaje es fuera de la ciudad, ¿los gastos están cubiertos?":"If filming is out of town, are expenses covered?","¿Se usará en publicidad de pago?":"Will it be used in paid advertising?","¿Puedo mostrarlo en mi portfolio?":"Can I show it in my portfolio?","¿Todas las personas que salen están de acuerdo?":"Has everyone appearing agreed?","¿Algo más?":"Anything else?",
+"Tu ticket está listo":"Your ticket is ready","Revísalo y envíamelo. Tus respuestas llegarán a mi correo a través de EmailJS.":"Review it and send it to me. Your answers will reach my email through EmailJS.","Gracias por rodar con nosotros.":"Thanks for rolling with us.","Enviar por WhatsApp":"Send via WhatsApp","Atrás":"Back","Siguiente":"Next","Ver mi ticket":"See my ticket","Enviar a BE.STUDIO":"Send to BE.STUDIO","¡Enviado!":"Sent!","Enviando…":"Sending…","Reintentar envío":"Try again","Copiar ticket":"Copy ticket","¡Copiado!":"Copied!",
+"Copiado. Ahora pégalo en un correo y envíamelo.":"Copied. Now paste it into an email and send it to me.","Texto seleccionado. Cópialo manualmente o usa el botón de WhatsApp.":"Text selected. Copy it manually or use the WhatsApp button.","Recibido. Te escribiré pronto para hablar de tu proyecto.":"Received. I'll write to you soon to talk about your project.","No se ha podido enviar. Inténtalo de nuevo o envíamelo por WhatsApp.":"It couldn't be sent. Try again or send it to me via WhatsApp.",
+"BRIEF DE PROYECTO":"PROJECT BRIEF","Contacto":"Contact","Idea":"Idea","Entrega":"Delivery","Rodaje":"Shoot","Acuerdo":"Agreement","CONTACTO":"CONTACT","ENTREGA":"DELIVERY","RODAJE":"SHOOT","ACUERDO":"AGREEMENT",
+"Nombre":"Name","Quién aprueba":"Who approves","Objetivo":"Goal","Descripción":"Description","Sensación buscada":"Desired feeling","Público":"Audience","Cantidad y duración":"Quantity and length","Fecha de entrega":"Delivery date","Referencias":"References","Evitar":"Avoid","Fechas":"Dates","Lugares":"Locations","Personas":"People","Plan previsto":"Planned activities","Productos o marcas":"Products or brands","Permiso para grabar":"Filming permission","Presupuesto o intercambio":"Budget or exchange","Gastos cubiertos fuera de la ciudad":"Expenses covered out of town","Publicidad de pago":"Paid advertising","Uso en portfolio":"Portfolio use","Personas de acuerdo":"Everyone has agreed","Otros comentarios":"Other comments",
+"Marca":"Brand","Influencer o creador":"Influencer or creator","Viaje":"Travel","Deporte":"Sport","Moda":"Fashion","Evento":"Event","Otro":"Other","Otra":"Other","Dar a conocer":"Raise awareness","Vender":"Sell","Crecer en redes":"Grow on social media","Generar comunidad":"Build community","Recuerdo personal":"Personal keepsake","Reels o vídeos verticales":"Reels or vertical videos","Vídeo horizontal":"Horizontal video","Vídeo resumen":"Recap video","Stories":"Stories","Fotos":"Photos","Detrás de cámaras":"Behind the scenes","Web":"Website","Anuncios de pago":"Paid ads","Sí":"Yes","Pagado":"Paid","Intercambio o colaboración":"Exchange or collaboration","Por definir":"To be decided"
+};
+const tr = (s, L = lang) => (L === "en" && T[s]) || s;
 document.querySelectorAll(".chips").forEach(box => {
   const multi = box.hasAttribute("data-m"), g = box.dataset.g;
   box.setAttribute("role", "group"); box.setAttribute("aria-label", g);
@@ -200,20 +222,21 @@ const scenes = [...document.querySelectorAll(".scene")];
 const stepsEl = $("steps");
 scenes.forEach((s, i) => { const li = document.createElement("li"); li.textContent = "(" + (i + 1) + ")"; li.setAttribute("aria-label", s.dataset.s); stepsEl.append(li); });
 let cur = 0, lastSent = null;
-function values() {
+function values(L = lang) {
   const out = [];
   scenes.slice(0, -1).forEach(sc => {
     const rows = [], seen = new Set();
     sc.querySelectorAll("input,textarea").forEach(el => {
       if (seen.has(el.name)) return; seen.add(el.name);
       const v = (el.type === "checkbox" || el.type === "radio")
-        ? [...sc.querySelectorAll("input:checked")].filter(x => x.name === el.name).map(x => x.value).join(", ")
+        ? [...sc.querySelectorAll("input:checked")].filter(x => x.name === el.name).map(x => tr(x.value, L)).join(", ")
         : el.value.trim();
-      if (v) rows.push(el.name + ": " + v);
+      if (v) rows.push(tr(el.name, L) + ": " + v);
     });
-    if (rows.length) out.push(sc.dataset.s.toUpperCase() + "\n" + rows.join("\n"));
+    if (rows.length) out.push(tr(sc.dataset.s, L).toUpperCase() + "\n" + rows.join("\n"));
   });
-  return "BRIEF DE PROYECTO\n\n" + out.join("\n\n");
+  const note = L === "es" && lang === "en" ? "Idioma del cliente: inglés\n\n" : "";
+  return tr("BRIEF DE PROYECTO", L) + "\n\n" + note + out.join("\n\n");
 }
 function save() {
   const d = {};
@@ -234,12 +257,14 @@ function render(move) {
   scenes.forEach((s, i) => s.hidden = i !== cur);
   [...stepsEl.children].forEach((li, i) => li.classList.toggle("on", i <= cur));
   $("prev").hidden = cur === 0; $("next").hidden = cur === scenes.length - 1;
-  $("next").textContent = cur === scenes.length - 2 ? "Ver mi ticket" : "Siguiente";
+  $("next").textContent = tr(cur === scenes.length - 2 ? "Ver mi ticket" : "Siguiente");
+  $("copy").textContent = tr("Copiar ticket");
   $("err").textContent = "";
   if (cur === scenes.length - 1) {
     const t = values(); $("out").textContent = t; $("copied").textContent = "";
-    if (WHATSAPP) { $("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); }
-    $("send").disabled = t === lastSent; $("send").textContent = t === lastSent ? "¡Enviado!" : "Enviar a BE.STUDIO";
+    if (WHATSAPP) { $("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(values("es")); }
+    const already = values("es") === lastSent;
+    $("send").disabled = already; $("send").textContent = tr(already ? "¡Enviado!" : "Enviar a BE.STUDIO");
   }
   if (move) stepsEl.scrollIntoView({ block: "start" });
 }
@@ -247,7 +272,8 @@ const required = { 0: ["nombre", "contacto"], 1: ["idea"] };
 $("next").onclick = () => {
   const miss = (required[cur] || []).find(id => !$(id).value.trim());
   if (miss) {
-    $("err").textContent = "Completa «" + document.querySelector('label[for="' + miss + '"]').textContent.replace(" *", "") + "» para continuar.";
+    const name = document.querySelector('label[for="' + miss + '"]').textContent.replace(" *", "");
+    $("err").textContent = lang === "en" ? "Please complete “" + name + "” to continue." : "Completa «" + name + "» para continuar.";
     $(miss).focus(); return;
   }
   cur++; save(); render(true);
@@ -257,14 +283,14 @@ form.addEventListener("input", save);
 form.addEventListener("submit", e => e.preventDefault());
 $("copy").onclick = () => {
   const btn = $("copy");
-  const done = () => { btn.textContent = "¡Copiado!"; $("copied").textContent = "Copiado. Ahora pégalo en un correo y envíamelo."; setTimeout(() => { btn.textContent = "Copiar ticket"; }, 3000); };
-  const manual = () => { const r = document.createRange(); r.selectNodeContents($("out")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} if (ok) done(); else $("copied").textContent = "Texto seleccionado. Cópialo manualmente o usa el botón de WhatsApp."; };
+  const done = () => { btn.textContent = tr("¡Copiado!"); $("copied").textContent = tr("Copiado. Ahora pégalo en un correo y envíamelo."); setTimeout(() => { btn.textContent = tr("Copiar ticket"); }, 3000); };
+  const manual = () => { const r = document.createRange(); r.selectNodeContents($("out")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} if (ok) done(); else $("copied").textContent = tr("Texto seleccionado. Cópialo manualmente o usa el botón de WhatsApp."); };
   if (navigator.clipboard) Promise.race([navigator.clipboard.writeText($("out").textContent), new Promise((_, no) => setTimeout(no, 1200))]).then(done, manual); else manual();
 };
 $("send").onclick = async () => {
-  const btn = $("send"), t = $("out").textContent, msg = $("copied");
-  btn.disabled = true; btn.textContent = "Enviando…"; msg.textContent = "";
-  const sent = () => { lastSent = t; btn.textContent = "¡Enviado!"; msg.textContent = "Recibido. Te escribiré pronto para hablar de tu proyecto."; $("wa").hidden = true; $("copy").hidden = true; };
+  const btn = $("send"), t = values("es"), msg = $("copied");
+  btn.disabled = true; btn.textContent = tr("Enviando…"); msg.textContent = "";
+  const sent = () => { lastSent = t; btn.textContent = tr("¡Enviado!"); msg.textContent = tr("Recibido. Te escribiré pronto para hablar de tu proyecto."); $("wa").hidden = true; $("copy").hidden = true; };
   if ($("web2").value) { sent(); return; }
   const found = $("contacto").value.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
   try {
@@ -272,7 +298,7 @@ $("send").onclick = async () => {
     if (!r.ok) throw new Error("envio");
     sent();
   } catch (e) {
-    btn.disabled = false; btn.textContent = "Reintentar envío"; msg.textContent = "No se ha podido enviar. Inténtalo de nuevo o envíamelo por WhatsApp."; if (WHATSAPP) $("wa").hidden = false; $("copy").hidden = false;
+    btn.disabled = false; btn.textContent = tr("Reintentar envío"); msg.textContent = tr("No se ha podido enviar. Inténtalo de nuevo o envíamelo por WhatsApp."); if (WHATSAPP) $("wa").hidden = false; $("copy").hidden = false;
   }
 };
 let saved = {};
@@ -286,7 +312,31 @@ if (location.hash === "#menorca" && !saved.lugar) {
   pick("Gastos cubiertos fuera de la ciudad", "Sí");
   $("brief").scrollIntoView();
 }
-render(false);
+const originals = new WeakMap(), skipIds = new Set(["out", "next", "send", "copy", "copied", "err"]);
+function setLang(L, remember) {
+  lang = L;
+  document.documentElement.lang = L;
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = w.nextNode())) {
+    const p = n.parentElement;
+    if (!p || p.closest("script,style") || skipIds.has(p.id)) continue;
+    if (!originals.has(n)) originals.set(n, n.nodeValue);
+    const o = originals.get(n), k = o.trim();
+    n.nodeValue = k && tr(k) !== k ? o.replace(k, tr(k)) : o;
+  }
+  [...stepsEl.children].forEach((li, i) => li.setAttribute("aria-label", tr(scenes[i].dataset.s)));
+  document.querySelectorAll(".chips").forEach(b => b.setAttribute("aria-label", tr(b.dataset.g)));
+  $("lang-es").setAttribute("aria-pressed", String(L === "es"));
+  $("lang-en").setAttribute("aria-pressed", String(L === "en"));
+  if (remember) { try { localStorage.setItem("bestudio-lang", L); } catch (e) {} }
+  render(false);
+}
+$("lang-es").onclick = () => setLang("es", true);
+$("lang-en").onclick = () => setLang("en", true);
+let startLang = location.hash === "#en" ? "en" : "es";
+if (location.hash !== "#en") { try { if (localStorage.getItem("bestudio-lang") === "en") startLang = "en"; } catch (e) {} }
+setLang(startLang, false);
 </script>
 </body>
 </html>
