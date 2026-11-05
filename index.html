@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="BE.STUDIO, productora audiovisual en Barcelona: deporte, moda, viajes y marcas. By Victor Bellido.">
+<title>BE.STUDIO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter+Tight:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: cartel editorial negro que termina en un ticket de papel crema. */
+:root{--red:#cf2434;--black:#0b0b0b;--cream:#e6d8be;--light:#f8f1e4;--deep:#8f1420;
+--impact:Archivo,"Arial Black",Arial,sans-serif;--voice:"Inter Tight",Arial,sans-serif;--mono:"Space Mono","Courier New",monospace;color-scheme:dark}
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+body{margin:0}
+html{background:var(--black)}
+body{background:var(--black);color:var(--cream);font:500 18px/1.45 var(--voice)}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:800px){.pad{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
+.in{max-width:1344px;margin:0 auto}
+.mono{font:400 14px/1.35 var(--mono)}
+a{color:inherit}
+a:hover{color:var(--light)}
+header .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:22px}
+header nav{display:flex;gap:20px}
+.logo{font-weight:700;text-decoration:none}
+h1,h2,h3{margin:0;text-wrap:balance}
+.hero .in{padding-block:clamp(36px,7vw,84px) 44px}
+.hero h1{color:var(--red);line-height:.84}
+.hero h1 b{display:block;font:900 clamp(66px,15vw,206px)/.84 var(--impact);font-stretch:125%;letter-spacing:-.06em}
+.hero h1 span{display:block;font:800 clamp(76px,17.5vw,236px)/.84 var(--voice);letter-spacing:-.075em}
+.hero .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border:1.5px solid var(--red);border-radius:0;background:var(--red);color:var(--light);font:700 17px var(--voice);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--black);color:var(--light)}
+.btn.line{background:transparent;color:var(--black);border-color:var(--black)}
+.btn.line:hover{background:var(--black);color:var(--light)}
+#brief .btn:hover{background:var(--black);border-color:var(--black)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.reel{border-block:1px solid var(--cream)}
+.reel .in{min-height:clamp(180px,31vw,420px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px}
+.reel strong{font:800 clamp(38px,7vw,88px)/.95 var(--voice);letter-spacing:-.065em}
+#servicios .in{padding-block:48px 64px}
+.rowline{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;border-bottom:1px solid var(--red);padding-block:7px}
+.rowline h3,.rowline .t{color:var(--red);font:800 clamp(34px,6.4vw,76px)/1 var(--voice);letter-spacing:-.065em}
+.rowline p{margin:0;max-width:34ch;text-align:right}
+.slogan{background:var(--red);color:var(--black)}
+.slogan .in{padding-block:clamp(28px,5vw,60px)}
+.slogan strong{display:block;font:800 clamp(58px,13vw,176px)/.9 var(--voice);letter-spacing:-.07em}
+.yn{gap:18px}
+.yn .chip span{min-width:72px;gap:10px;padding:0;border:0;font-weight:700;font-size:15px}
+.yn .chip span::before{content:"";flex:none;width:26px;height:26px;border:2px solid var(--black);background:transparent}
+.yn .chip input:checked+span{background:transparent;color:var(--black)}
+.yn .chip input:checked+span::before{background:var(--red);border-color:var(--red);box-shadow:inset 0 0 0 5px var(--cream)}
+#brief{background:var(--cream);color:var(--black)}
+#brief>.in{padding-block:56px 72px}
+#brief h2{color:var(--red);font:900 clamp(46px,9.5vw,128px)/.88 var(--impact);font-stretch:125%;letter-spacing:-.06em}
+.lead{max-width:36em;margin:18px 0 34px;font-size:19px}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;padding:0;margin:0 0 34px}
+.steps li{padding-top:7px;border-top:3px solid rgba(11,11,11,.28)}
+.steps li.on{border-color:var(--red);font-weight:700}
+.scene{border:0;margin:0;padding:0;display:grid;gap:22px;max-width:760px;min-width:0}
+.scene legend{padding:0;margin-bottom:8px;color:var(--red);font:800 clamp(36px,6vw,64px)/1 var(--voice);letter-spacing:-.06em}
+.f{display:grid;gap:7px;min-width:0}
+.f>label,.q{font-weight:700}
+.h{font-weight:500;font-size:15px}
+input[type=text],textarea{width:100%;min-height:50px;padding:11px 12px;border:1.5px solid var(--black);border-radius:0;background:transparent;color:var(--black);font:400 15px/1.45 var(--mono);color-scheme:light}
+textarea{min-height:108px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.chip span{display:flex;align-items:center;min-height:44px;padding:0 13px;border:1.5px solid var(--black);font:400 14px/1.2 var(--mono)}
+.chip input:checked+span{background:var(--red);border-color:var(--red);color:var(--light)}
+.chip input:focus-visible+span{outline:3px solid var(--red);outline-offset:3px}
+.err{min-height:1.5em;margin:14px 0 0;color:var(--deep);font-weight:700}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;max-width:760px;margin-top:18px}
+.ticket{width:100%;max-width:560px;background:var(--light);padding:28px 26px 24px;color:var(--black);font:400 14px/1.5 var(--mono);box-shadow:0 0 0 1px var(--black)}
+.ticket .bn{color:var(--red);text-align:center}
+.ticket .bn b{display:block;font:900 66px/.9 var(--impact);font-stretch:125%;letter-spacing:-.06em}
+.ticket .bn i{display:block;font:800 40px/.9 var(--voice);letter-spacing:-.07em}
+.dash{border-top:2px dashed var(--black);margin-block:14px}
+pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
+.bars{height:46px;background:repeating-linear-gradient(90deg,var(--black) 0 3px,transparent 3px 6px,var(--black) 6px 12px,transparent 12px 15px,var(--black) 15px 17px,transparent 17px 22px)}
+.thanks{text-align:center;margin-top:10px;font:800 22px/1 var(--voice);letter-spacing:-.05em}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:26px}
+@media(max-width:640px){.rowline p{text-align:left}.steps{font-size:12px}}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+<header class="pad"><div class="in mono"><a class="logo" href="#inicio">BE.STUDIO</a><nav><a href="#servicios">(1) Servicios</a><a href="#brief">(2) Brief</a></nav></div></header>
+
+<main id="inicio">
+<section class="hero pad"><div class="in">
+  <h1><b>BE.</b><span>STUDIO</span></h1>
+  <div class="row"><span class="mono">(productora audiovisual) · Barcelona<br>by Victor Bellido</span><a class="btn" href="#brief">Empezar un proyecto</a></div>
+</div></section>
+
+<section class="reel pad" aria-label="Showreel"><div class="in"><strong>Showreel</strong><span class="mono">(próximamente)</span></div></section>
+
+<section id="servicios" class="pad"><div class="in">
+  <div class="rowline"><h3>(1) DEPORTE</h3><p class="mono">Entrenamientos, atletas y competición.</p></div>
+  <div class="rowline"><h3>(2) MODA</h3><p class="mono">Piezas con estética y dirección de imagen.</p></div>
+  <div class="rowline"><h3>(3) VIAJES</h3><p class="mono">Experiencias y día a día contados como historia.</p></div>
+  <div class="rowline"><h3>(4) MARCAS</h3><p class="mono">Contenido para redes, marcas y creadores.</p></div>
+</div></section>
+
+<section class="slogan pad"><div class="in"><strong>Be in motion.</strong></div></section>
+
+<section id="brief" class="pad"><div class="in">
+  <h2>CUÉNTAME<br>TU PROYECTO</h2>
+  <p class="lead">Son unos 5 minutos. Responde lo que sepas; lo que falte lo vemos juntos. Al final verás tu ticket y me lo enviarás con un botón.</p>
+  <ol class="steps mono" id="steps"></ol>
+  <form id="f" novalidate>
+    <fieldset class="scene" data-s="Contacto"><legend>¿Con quién hablo?</legend>
+      <div class="f"><label for="nombre">Tu nombre *</label><input type="text" id="nombre" name="Nombre" autocomplete="name"></div>
+      <div class="f"><label for="marca">Marca o proyecto</label><input type="text" id="marca" name="Marca o proyecto"></div>
+      <div class="f"><label for="contacto">WhatsApp o correo *</label><input type="text" id="contacto" name="Contacto"></div>
+      <div class="f"><label for="redes">Web o redes</label><input type="text" id="redes" name="Web o redes"></div>
+      <div class="f"><label for="decide">¿Quién aprueba el contenido?</label><input type="text" id="decide" name="Quién aprueba"></div>
+    </fieldset>
+    <fieldset class="scene" data-s="Idea"><legend>¿Qué quieres contar?</legend>
+      <div class="f"><span class="q">Tipo de proyecto</span><div class="chips" data-g="Tipo de proyecto" data-o="Marca|Influencer o creador|Viaje|Deporte|Moda|Evento|Otro"></div></div>
+      <div class="f"><span class="q">Objetivo principal</span><div class="chips" data-g="Objetivo" data-o="Dar a conocer|Vender|Crecer en redes|Generar comunidad|Recuerdo personal|Otro"></div></div>
+      <div class="f"><label for="idea">Describe el proyecto *</label><textarea id="idea" name="Descripción"></textarea></div>
+      <div class="f"><label for="sensacion">¿Qué debe sentir quien lo vea?</label><input type="text" id="sensacion" name="Sensación buscada"></div>
+      <div class="f"><label for="publico">¿A quién va dirigido?</label><input type="text" id="publico" name="Público"></div>
+    </fieldset>
+    <fieldset class="scene" data-s="Entrega"><legend>¿Qué necesitas recibir?</legend>
+      <div class="f"><span class="q">Piezas</span><div class="chips" data-m data-g="Piezas" data-o="Reels o vídeos verticales|Vídeo horizontal|Vídeo resumen|Stories|Fotos|Detrás de cámaras"></div></div>
+      <div class="f"><span class="q">Plataformas</span><div class="chips" data-m data-g="Plataformas" data-o="Instagram|TikTok|YouTube|Web|Anuncios de pago|Otra"></div></div>
+      <div class="f"><label for="cantidad">¿Cuántas piezas y de qué duración?</label><input type="text" id="cantidad" name="Cantidad y duración"></div>
+      <div class="f"><label for="entrega">¿Para cuándo lo necesitas?</label><input type="text" id="entrega" name="Fecha de entrega"></div>
+      <div class="f"><label for="refs">Referencias que te gusten <span class="h">· enlaces a vídeos o cuentas</span></label><textarea id="refs" name="Referencias"></textarea></div>
+      <div class="f"><label for="evitar">¿Algo que quieras evitar?</label><input type="text" id="evitar" name="Evitar"></div>
+    </fieldset>
+    <fieldset class="scene" data-s="Rodaje"><legend>¿Dónde y cuándo?</legend>
+      <div class="f"><label for="fechas">Fechas y horarios</label><input type="text" id="fechas" name="Fechas"></div>
+      <div class="f"><label for="lugar">Lugar o lugares</label><input type="text" id="lugar" name="Lugares"></div>
+      <div class="f"><label for="personas">¿Quién aparecerá?</label><input type="text" id="personas" name="Personas"></div>
+      <div class="f"><label for="plan">Plan o actividades previstas</label><textarea id="plan" name="Plan previsto"></textarea></div>
+      <div class="f"><label for="visible">Productos o marcas que deben aparecer</label><input type="text" id="visible" name="Productos o marcas"></div>
+      <div class="f"><span class="q">¿Hace falta permiso para grabar en algún sitio?</span><div class="chips yn" data-g="Permiso para grabar" data-o="Sí|No"></div></div>
+    </fieldset>
+    <fieldset class="scene" data-s="Acuerdo"><legend>¿Cómo trabajamos juntos?</legend>
+      <div class="f"><span class="q">Tipo de acuerdo</span><div class="chips" data-g="Tipo de acuerdo" data-o="Pagado|Intercambio o colaboración|Por definir"></div></div>
+      <div class="f"><label for="presu">Presupuesto o intercambio previsto</label><input type="text" id="presu" name="Presupuesto o intercambio"></div>
+      <div class="f"><span class="q">Si el rodaje es fuera de la ciudad, ¿los gastos están cubiertos?</span><div class="chips yn" data-g="Gastos cubiertos fuera de la ciudad" data-o="Sí|No"></div></div>
+      <div class="f"><span class="q">¿Se usará en publicidad de pago?</span><div class="chips yn" data-g="Publicidad de pago" data-o="Sí|No"></div></div>
+      <div class="f"><span class="q">¿Puedo mostrarlo en mi portfolio?</span><div class="chips yn" data-g="Uso en portfolio" data-o="Sí|No"></div></div>
+      <div class="f"><span class="q">¿Todas las personas que salen están de acuerdo?</span><div class="chips yn" data-g="Personas de acuerdo" data-o="Sí|No"></div></div>
+      <div class="f"><label for="otros">¿Algo más?</label><textarea id="otros" name="Otros comentarios"></textarea></div>
+    </fieldset>
+    <fieldset class="scene" data-s="Ticket"><legend>Tu ticket está listo</legend>
+      <p style="margin:0">Revísalo y envíamelo. Tus respuestas llegarán a mi correo a través de EmailJS.</p>
+      <div class="ticket">
+        <div class="bn"><b>BE.</b><i>STUDIO</i></div>
+        <div class="dash"></div>
+        <pre id="out" tabindex="0"></pre>
+        <div class="dash"></div>
+        <div class="bars" aria-hidden="true"></div>
+        <div class="thanks">Gracias por rodar con nosotros.</div>
+      </div>
+      <input type="text" id="web2" name="web2" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px">
+      <div class="actions"><button type="button" class="btn" id="send">Enviar a BE.STUDIO</button><button type="button" class="btn line" id="copy" hidden>Copiar ticket</button><a class="btn line" id="wa" target="_blank" rel="noopener" hidden>Enviar por WhatsApp</a></div>
+      <p id="copied" role="status" style="margin:0;font-weight:700"></p>
+    </fieldset>
+    <p class="err" id="err" role="alert"></p>
+    <div class="nav"><button type="button" class="btn line" id="prev">Atrás</button><button type="button" class="btn" id="next">Siguiente</button></div>
+  </form>
+</div></section>
+</main>
+
+<footer class="pad"><div class="in mono"><span>BE.STUDIO by Victor Bellido</span><span><a href="https://wa.me/34627929605" target="_blank" rel="noopener">+34 627 929 605</a> · <a href="mailto:vdbellido@gmail.com">vdbellido@gmail.com</a></span></div></footer>
+
+<script>
+// Pon aquí el número con prefijo, sin + ni espacios, para activar el botón de WhatsApp.
+const WHATSAPP = "34627929605";
+const KEY = "bestudio-brief";
+const form = document.getElementById("f");
+const $ = id => document.getElementById(id);
+document.querySelectorAll(".chips").forEach(box => {
+  const multi = box.hasAttribute("data-m"), g = box.dataset.g;
+  box.setAttribute("role", "group"); box.setAttribute("aria-label", g);
+  box.dataset.o.split("|").forEach((o, i) => {
+    const l = document.createElement("label"); l.className = "chip";
+    const inp = document.createElement("input");
+    inp.type = multi ? "checkbox" : "radio"; inp.name = g; inp.value = o; inp.id = g.replace(/\W/g, "") + i;
+    const s = document.createElement("span"); s.textContent = o;
+    l.append(inp, s); box.append(l);
+    // Una opción única se puede desmarcar con un segundo toque.
+    if (!multi) inp.addEventListener("click", () => {
+      if (inp.dataset.was === "1") { inp.checked = false; inp.dataset.was = ""; save(); }
+      else { form.querySelectorAll('input[type="radio"]').forEach(x => { if (x.name === g) x.dataset.was = ""; }); inp.dataset.was = "1"; }
+    });
+  });
+});
+const scenes = [...document.querySelectorAll(".scene")];
+const stepsEl = $("steps");
+scenes.forEach((s, i) => { const li = document.createElement("li"); li.textContent = "(" + (i + 1) + ")"; li.setAttribute("aria-label", s.dataset.s); stepsEl.append(li); });
+let cur = 0, lastSent = null;
+function values() {
+  const out = [];
+  scenes.slice(0, -1).forEach(sc => {
+    const rows = [], seen = new Set();
+    sc.querySelectorAll("input,textarea").forEach(el => {
+      if (seen.has(el.name)) return; seen.add(el.name);
+      const v = (el.type === "checkbox" || el.type === "radio")
+        ? [...sc.querySelectorAll("input:checked")].filter(x => x.name === el.name).map(x => x.value).join(", ")
+        : el.value.trim();
+      if (v) rows.push(el.name + ": " + v);
+    });
+    if (rows.length) out.push(sc.dataset.s.toUpperCase() + "\n" + rows.join("\n"));
+  });
+  return "BRIEF DE PROYECTO\n\n" + out.join("\n\n");
+}
+function save() {
+  const d = {};
+  form.querySelectorAll("input,textarea").forEach(el => {
+    if (el.type === "checkbox" || el.type === "radio") { if (el.checked) d[el.id] = true; }
+    else if (el.value) d[el.id] = el.value;
+  });
+  try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
+}
+function apply(d) {
+  Object.entries(d).forEach(([id, v]) => {
+    const el = $(id); if (!el) return;
+    if (el.type === "checkbox" || el.type === "radio") { el.checked = !!v; if (el.type === "radio" && v) el.dataset.was = "1"; }
+    else el.value = v;
+  });
+}
+function render(move) {
+  scenes.forEach((s, i) => s.hidden = i !== cur);
+  [...stepsEl.children].forEach((li, i) => li.classList.toggle("on", i <= cur));
+  $("prev").hidden = cur === 0; $("next").hidden = cur === scenes.length - 1;
+  $("next").textContent = cur === scenes.length - 2 ? "Ver mi ticket" : "Siguiente";
+  $("err").textContent = "";
+  if (cur === scenes.length - 1) {
+    const t = values(); $("out").textContent = t; $("copied").textContent = "";
+    if (WHATSAPP) { $("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); }
+    $("send").disabled = t === lastSent; $("send").textContent = t === lastSent ? "¡Enviado!" : "Enviar a BE.STUDIO";
+  }
+  if (move) stepsEl.scrollIntoView({ block: "start" });
+}
+const required = { 0: ["nombre", "contacto"], 1: ["idea"] };
+$("next").onclick = () => {
+  const miss = (required[cur] || []).find(id => !$(id).value.trim());
+  if (miss) {
+    $("err").textContent = "Completa «" + document.querySelector('label[for="' + miss + '"]').textContent.replace(" *", "") + "» para continuar.";
+    $(miss).focus(); return;
+  }
+  cur++; save(); render(true);
+};
+$("prev").onclick = () => { cur--; render(true); };
+form.addEventListener("input", save);
+form.addEventListener("submit", e => e.preventDefault());
+$("copy").onclick = () => {
+  const btn = $("copy");
+  const done = () => { btn.textContent = "¡Copiado!"; $("copied").textContent = "Copiado. Ahora pégalo en un correo y envíamelo."; setTimeout(() => { btn.textContent = "Copiar ticket"; }, 3000); };
+  const manual = () => { const r = document.createRange(); r.selectNodeContents($("out")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} if (ok) done(); else $("copied").textContent = "Texto seleccionado. Cópialo manualmente o usa el botón de WhatsApp."; };
+  if (navigator.clipboard) Promise.race([navigator.clipboard.writeText($("out").textContent), new Promise((_, no) => setTimeout(no, 1200))]).then(done, manual); else manual();
+};
+$("send").onclick = async () => {
+  const btn = $("send"), t = $("out").textContent, msg = $("copied");
+  btn.disabled = true; btn.textContent = "Enviando…"; msg.textContent = "";
+  const sent = () => { lastSent = t; btn.textContent = "¡Enviado!"; msg.textContent = "Recibido. Te escribiré pronto para hablar de tu proyecto."; $("wa").hidden = true; $("copy").hidden = true; };
+  if ($("web2").value) { sent(); return; }
+  const found = $("contacto").value.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+  try {
+    const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service_id: "service_cmfxomg", template_id: "template_6sjr9nw", user_id: "xHsREeKZmGezSdKQu", template_params: { ticket: t, nombre: $("nombre").value.trim(), correo: found ? found[0] : "vdbellido@gmail.com" } }) });
+    if (!r.ok) throw new Error("envio");
+    sent();
+  } catch (e) {
+    btn.disabled = false; btn.textContent = "Reintentar envío"; msg.textContent = "No se ha podido enviar. Inténtalo de nuevo o envíamelo por WhatsApp."; if (WHATSAPP) $("wa").hidden = false; $("copy").hidden = false;
+  }
+};
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) {}
+apply(saved);
+// Enlace #menorca: viene con los datos que ya conocemos del viaje.
+if (location.hash === "#menorca" && !saved.lugar) {
+  apply({ lugar: "Menorca", fechas: "Finales de noviembre de 2026 (confirmar días)" });
+  const pick = (g, v) => { const el = [...form.querySelectorAll("input")].find(x => x.name === g && x.value === v); if (el) { el.checked = true; if (el.type === "radio") el.dataset.was = "1"; } };
+  pick("Tipo de proyecto", "Viaje"); pick("Tipo de acuerdo", "Intercambio o colaboración");
+  pick("Gastos cubiertos fuera de la ciudad", "Sí");
+  $("brief").scrollIntoView();
+}
+render(false);
+</script>
+</body>
+</html>
